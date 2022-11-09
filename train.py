@@ -68,7 +68,7 @@ config = (
                 'include_agents': False,
             },
             'random_level_on_reset': True,
-            'yaml_file': 'Single-Player/GVGAI/clusters_partially_observable.yaml',
+            'yaml_file': environment_yaml,
             'global_observer_type': gd.ObserverType.SPRITE_2D,
             'player_observer_type': gd.ObserverType.VECTOR,
             'max_steps': 1000,
