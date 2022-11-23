@@ -1,0 +1,1171 @@
+Version: '0.1'
+Environment:
+  Name: GridMan
+  Description: >-
+    A template GDY environment where a block can move around and collect green
+    stuff
+  Variables:
+    - Name: consumed_big_cherry
+      InitialValue: 0
+    - Name: mika_count
+      InitialValue: 0
+    - Name: minqi_count
+      InitialValue: 0
+    - Name: tim_count
+      InitialValue: 0
+  Observers:
+    Vector:
+      Width: 7
+      Height: 7
+      TrackAvatar: true
+      GlobalVariableMapping:
+        - consumed_big_cherry
+    HumanPlayerBlockObserver:
+      Type: BLOCK_2D
+      Width: 7
+      Height: 7
+      TrackAvatar: true
+    GlobalBlockObserver:
+      TileSize: 16
+      Type: BLOCK_2D
+      Shader:
+        ObserverAvatarMode: GRAYSCALE
+    GlobalSpriteObserver:
+      TileSize: 16
+      Type: SPRITE_2D
+      Shader:
+        ObserverAvatarMode: DARKEN
+  Player:
+    AvatarObject: gridman
+  Termination:
+    Win:
+      - eq:
+          - cherry:count
+          - 0
+    Lose:
+      - eq:
+          - gridman:count
+          - 0
+  Levels:
+    - >
+      w   w   w   w   w   w   w   w   w   w   w   w   w   w   w   w   w   w  
+      w   
+
+      w   c/f c/f c/f c/f c/f c/f c/f c/f C/f c/f c/f c/f c/f c/f c/f c/f c/f
+      w   
+
+      w   c/f w   c/f w   w   c/f w   w   w   w   w   c/f w   w   c/f w   c/f
+      w   
+
+      w   c/f w   c/f c/f c/f c/f c/f c/f w   c/f c/f c/f c/f c/f c/f w   c/f
+      w   
+
+      w   c/f w   w   w   w   c/f w   c/f w   c/f w   c/f w   w   w   w   c/f
+      w   
+
+      w   c/f c/f c/f c/f w   c/f c/f c/f w   c/f c/f c/f w   c/f c/f c/f c/f
+      w   
+
+      w   c/f w   w   c/f w   c/f w   c/f c/f c/f w   c/f w   c/f w   w   c/f
+      w   
+
+      w   c/f w   c/f c/f w   c/f w   w   w   w   w   c/f w   c/f c/f w   c/f
+      w   
+
+      w   c/f w   C/f w   w   c/f c/f c/f g/f c/f c/f c/f w   w   C/f w   c/f
+      w   
+
+      w   c/f w   c/f c/f w   c/f w   G/F G/F G/F w   c/f w   c/f c/f w   c/f
+      w   
+
+      w   c/f w   w   c/f c/f c/f w   F   F   F   w   c/f c/f c/f w   w   c/f
+      w   
+
+      w   c/f c/f c/f c/f w   c/f w   t/T k/K m/M w   c/f w   c/f c/f c/f c/f
+      w   
+
+      w   c/f w   w   c/f w   c/f w   w   w   w   w   c/f w   c/f w   w   w  
+      w   
+
+      w   c/f c/f C/f c/f w   c/f c/f c/f c/f c/f c/f c/f w   c/f C/f c/f c/f
+      w   
+
+      w   c/f w   w   c/f w   w   c/f w   c/f w   c/f w   w   c/f w   w   c/f
+      w   
+
+      w   c/f c/f w   c/f c/f w   c/f w   c/f w   c/f w   c/f c/f w   c/f c/f
+      w   
+
+      w   c/f w   w   w   c/f w   c/f w   c/f w   c/f w   c/f w   w   w   c/f
+      w   
+
+      w   c/f c/f c/f c/f c/f c/f c/f w   c/f w   c/f c/f c/f c/f c/f c/f c/f
+      w   
+
+      w   c/f w   c/f w   c/f c/f w   w   c/f w   w   c/f c/f w   c/f w   c/f
+      w   
+
+      w   c/f w   w   w   w   c/f c/f c/f C/f c/f c/f c/f w   w   w   w   c/f
+      w   
+
+      w   c/f c/f w   c/f c/f c/f w   w   w   w   w   c/f c/f c/f w   c/f c/f
+      w   
+
+      w   w   c/f c/f c/f w   c/f c/f c/f C/f c/f c/f c/f w   c/f c/f c/f w  
+      w   
+
+      w   w   w   w   w   w   w   w   w   w   w   w   w   w   w   w   w   w   w
+    - >
+      .   .   .   .   .   w   w   w   w   w   w   w   w   w   w   w   w   w  
+      w   w   w   w   w   w   .   .   .   .   .   
+
+      .   .   .   .   .   w   c/f c/f c/f c/f c/f c/f c/f c/f C/f c/f c/f c/f
+      c/f c/f c/f c/f c/f w   .   .   .   .   .   
+
+      .   .   .   w   w   w   c/f w   c/f w   w   c/f w   w   w   w   w   c/f
+      w   w   c/f w   c/f w   w   w   .   .   .   
+
+      .   w   w   w   c/f c/f c/f w   c/f c/f c/f c/f c/f c/f w   c/f c/f c/f
+      c/f c/f c/f w   c/f c/f c/f w   w   w   .   
+
+      .   w   c/f c/f c/f w   c/f w   w   w   w   c/f w   c/f w   c/f w   c/f
+      w   w   w   w   c/f w   c/f c/f c/f w   .   
+
+      .   w   c/f w   c/f w   c/f c/f c/f c/f w   c/f c/f c/f w   c/f c/f c/f
+      w   c/f c/f c/f c/f w   c/f w   c/f w   .   
+
+      .   w   c/f w   c/f w   c/f w   w   c/f w   c/f w   c/f c/f c/f w   c/f
+      w   c/f w   w   c/f w   c/f w   c/f w   .   
+
+      w   w   c/f w   c/f w   c/f w   c/f c/f w   c/f w   w   w   w   w   c/f
+      w   c/f c/f w   c/f w   c/f w   c/f w   w   
+
+      w   c/f c/f c/f c/f c/f c/f w   c/f w   w   c/f c/f c/f g/f c/f c/f c/f
+      w   w   c/f w   c/f c/f c/f c/f c/f c/f w   
+
+      w   c/f w   c/f c/f w   w   w   w   w   w   w   w   G/F G/F G/F w   w  
+      w   w   w   w   w   w   c/f c/f w   c/f w   
+
+      w   c/f w   w   c/f w   .   .   .   .   .   .   w   F   F   F   w   .  
+      .   .   .   .   .   w   c/f w   w   c/f w   
+
+      w   c/f c/f w   c/f w   .   .   .   .   .   .   w   t/T k/K m/M w   .  
+      .   .   .   .   .   w   c/f w   c/f c/f w   
+
+      w   w   C/f c/f c/f w   .   .   .   .   .   .   w   F   F   F   w   .  
+      .   .   .   .   .   w   c/f c/f C/f w   w   
+
+      w   c/f c/f w   w   w   .   .   .   .   .   .   w   F   F   F   w   .  
+      .   .   .   .   .   w   w   w   c/f c/f w   
+
+      w   c/f c/f c/f c/f w   w   w   w   w   w   w   w   G/F G/F G/F w   w  
+      w   w   w   w   w   w   c/f c/f c/f c/f w   
+
+      w   c/f w   w   c/f w   c/f c/f w   c/f c/f w   c/f c/f c/f c/f c/f w  
+      c/f c/f w   c/f c/f w   c/f w   w   c/f w   
+
+      w   c/f c/f w   c/f w   c/f w   w   w   c/f w   c/f w   c/f w   c/f w  
+      c/f w   w   w   c/f w   c/f w   c/f c/f w   
+
+      w   w   c/f w   c/f w   c/f c/f c/f c/f c/f c/f c/f w   c/f w   c/f c/f
+      c/f c/f c/f c/f c/f w   c/f w   c/f w   w   
+
+      .   w   c/f c/f c/f c/f c/f w   c/f w   c/f c/f w   w   c/f w   w   c/f
+      c/f w   c/f w   c/f c/f c/f c/f c/f w   .   
+
+      .   w   w   w   w   w   c/f w   w   w   w   c/f c/f c/f C/f c/f c/f c/f
+      w   w   w   w   c/f w   w   w   w   w   .   
+
+      .   .   .   .   .   w   c/f c/f w   c/f c/f c/f w   w   w   w   w   c/f
+      c/f c/f w   c/f c/f w   .   .   .   .   .   
+
+      .   .   .   .   .   w   w   c/f c/f c/f w   c/f c/f c/f C/f c/f c/f c/f
+      w   c/f c/f c/f w   w   .   .   .   .   .   
+
+      .   .   .   .   .   w   w   w   w   w   w   w   w   w   w   w   w   w  
+      w   w   w   w   w   w   .   .   .   .   .
+    - >
+      w   w   w   w   w   w   w   w   w   w   w   w   w   w   w   w   w   w  
+      w   
+
+      w   c/f c/f c/f c/f c/f c/f c/f c/f C/f c/f c/f c/f c/f c/f c/f c/f c/f
+      w   
+
+      w   c/f w   w   w   w   c/f w   w   w   w   w   c/f w   w   w   w   c/f
+      w   
+
+      w   c/f c/f w   c/f c/f c/f c/f c/f w   c/f c/f c/f c/f c/f w   c/f c/f
+      w   
+
+      w   w   c/f w   c/f w   c/f w   c/f w   c/f w   c/f w   c/f w   c/f w  
+      w   
+
+      w   C/f c/f c/f c/f w   c/f w   c/f w   c/f w   c/f w   c/f c/f c/f C/f
+      w   
+
+      w   w   c/f w   w   w   c/f w   c/f c/f c/f w   c/f w   w   w   c/f w  
+      w   
+
+      .   w   c/f c/f c/f w   c/f w   w   w   w   w   c/f w   c/f c/f c/f w  
+      .   
+
+      .   w   c/f w   c/f w   c/f c/f c/f g/f c/f c/f c/f w   c/f w   c/f w  
+      .   
+
+      .   w   c/f w   c/f w   c/f w   G/F G/F G/F w   c/f w   c/f w   c/f w  
+      .   
+
+      w   w   c/f w   c/f c/f c/f w   F   F   F   w   c/f c/f c/f w   c/f w  
+      w   
+
+      w   c/f c/f w   c/f w   c/f w   t/T k/K m/M w   c/f w   c/f w   c/f c/f
+      w   
+
+      w   c/f w   w   c/f w   c/f w   w   w   w   w   c/f w   c/f w   w   c/f
+      w   
+
+      w   c/f c/f C/f c/f w   c/f c/f c/f c/f c/f c/f c/f w   c/f C/f c/f c/f
+      w   
+
+      w   w   c/f w   c/f w   w   w   c/f w   c/f w   w   w   c/f w   c/f w  
+      w   
+
+      w   c/f c/f w   c/f w   c/f c/f c/f w   c/f c/f c/f w   c/f w   c/f c/f
+      w   
+
+      w   w   w   w   c/f w   c/f w   w   w   w   w   c/f w   c/f w   w   c/f
+      w   
+
+      w   c/f c/f c/f c/f c/f c/f c/f c/f c/f c/f c/f c/f c/f c/f c/f c/f c/f
+      w   
+
+      w   c/f w   c/f w   w   c/f w   w   w   w   w   c/f w   w   c/f w   c/f
+      w   
+
+      w   c/f w   c/f c/f w   c/f c/f c/f w   c/f c/f c/f w   c/f c/f w   c/f
+      w   
+
+      w   c/f w   w   c/f w   c/f w   c/f C/f c/f w   c/f w   c/f w   w   c/f
+      w   
+
+      w   c/f c/f c/f c/f c/f c/f w   w   w   w   w   c/f c/f c/f c/f c/f c/f
+      w   
+
+      w   w   w   w   w   w   w   w   .   .   .   w   w   w   w   w   w   w   w
+Actions:
+  - Name: move
+    Behaviours:
+      - Src:
+          Object: gridman
+          Commands:
+            - mov: _dest
+        Dst:
+          Object: floor
+      - Src:
+          Object: gridman
+          Commands:
+            - mov: _dest
+            - reward: 1
+        Dst:
+          Object: cherry
+          Commands:
+            - remove: true
+      - Src:
+          Object: gridman
+          Commands:
+            - mov: _dest
+            - reward: 5
+            - exec:
+                Action: reset_cherry_timer
+                Delay: 30
+                ActionId: 1
+        Dst:
+          Object: big_cherry
+          Commands:
+            - remove: true
+            - incr: consumed_big_cherry
+      - Src:
+          Object: gridman
+          Commands:
+            - mov: _dest
+            - reward: 10
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnFalse:
+                  - remove: true
+        Dst:
+          Object: minqi
+          Commands:
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnTrue:
+                  - set:
+                      - minqi_count
+                      - 0
+                  - remove: true
+      - Src:
+          Object: gridman
+          Commands:
+            - mov: _dest
+            - reward: 10
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnFalse:
+                  - remove: true
+        Dst:
+          Object: mika
+          Commands:
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnTrue:
+                  - set:
+                      - mika_count
+                      - 0
+                  - remove: true
+      - Src:
+          Object: gridman
+          Commands:
+            - mov: _dest
+            - reward: 10
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnFalse:
+                  - remove: true
+        Dst:
+          Object: tim
+          Commands:
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnTrue:
+                  - set:
+                      - tim_count
+                      - 0
+                  - remove: true
+  - Name: chase_gridman
+    InputMapping:
+      Internal: true
+    Behaviours:
+      - Src:
+          Object: minqi
+          Commands:
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnTrue:
+                  - set:
+                      - minqi_count
+                      - 0
+                  - remove: true
+                OnFalse:
+                  - mov: _dest
+        Dst:
+          Object: gridman
+          Commands:
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnFalse:
+                  - remove: true
+      - Src:
+          Object: mika
+          Commands:
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnTrue:
+                  - set:
+                      - mika_count
+                      - 0
+                  - remove: true
+                OnFalse:
+                  - mov: _dest
+        Dst:
+          Object: gridman
+          Commands:
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnFalse:
+                  - remove: true
+      - Src:
+          Object: tim
+          Commands:
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnTrue:
+                  - set:
+                      - tim_count
+                      - 0
+                  - remove: true
+                OnFalse:
+                  - mov: _dest
+        Dst:
+          Object: gridman
+          Commands:
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnFalse:
+                  - remove: true
+      - Src:
+          Object:
+            - minqi
+            - mika
+            - tim
+          Commands:
+            - set:
+                - src.chase_cooldown
+                - 0
+            - mov: _dest
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnTrue:
+                  - set_tile: 1
+                OnFalse:
+                  - set_tile: 0
+        Dst:
+          Object:
+            - floor
+            - minqi_spawn_point
+            - mika_spawn_point
+            - tim_spawn_point
+            - staging_floor
+            - guard_rail
+            - cherry
+            - big_cherry
+      - Src:
+          Object:
+            - minqi
+            - mika
+            - tim
+          Commands:
+            - set:
+                - src.chase_cooldown
+                - 0
+        Dst:
+          Object:
+            - minqi
+            - mika
+            - tim
+  - Name: chase_proximity_trigger_off
+    Trigger:
+      Range: 9
+      Type: RANGE_BOX_BOUNDARY
+    InputMapping:
+      Internal: true
+    Behaviours:
+      - Src:
+          Object:
+            - minqi
+            - mika
+            - tim
+          Preconditions:
+            and:
+              - eq:
+                  - src.is_chasing
+                  - 1
+              - eq:
+                  - src.initial_chase_started
+                  - 1
+          Commands:
+            - set:
+                - src.is_chasing
+                - 0
+            - exec:
+                Action: chaser_random_movement
+                Delay: 3
+                Randomize: true
+        Dst:
+          Object: gridman
+  - Name: chase_proximity_trigger_on
+    Trigger:
+      Range: 8
+      Type: RANGE_BOX_AREA
+    InputMapping:
+      Internal: true
+    Probability: 1
+    Behaviours:
+      - Src:
+          Preconditions:
+            and:
+              - eq:
+                  - src.initial_chase_started
+                  - 1
+              - eq:
+                  - src.chase_cooldown
+                  - 0
+          Object:
+            - minqi
+            - mika
+            - tim
+          Commands:
+            - set:
+                - src.is_chasing
+                - 1
+            - set:
+                - src.chase_cooldown
+                - 1
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnTrue:
+                  - exec:
+                      Action: chase_gridman
+                      Delay: 1
+                      Search:
+                        Mode: FLEE
+                        ImpassableObjects:
+                          - wall
+                          - minqi
+                          - mika
+                          - tim
+                        TargetObjectName: gridman
+                OnFalse:
+                  - exec:
+                      Action: chase_gridman
+                      Delay: 2
+                      Search:
+                        ImpassableObjects:
+                          - wall
+                          - minqi
+                          - mika
+                          - tim
+                        TargetObjectName: gridman
+        Dst:
+          Object: gridman
+  - Name: chaser_random_movement
+    InputMapping:
+      Internal: true
+    Behaviours:
+      - Src:
+          Preconditions:
+            and:
+              - eq:
+                  - src.is_chasing
+                  - 0
+              - eq:
+                  - src.initial_chase_started
+                  - 1
+          Object:
+            - minqi
+            - mika
+            - tim
+          Commands:
+            - mov: _dest
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnTrue:
+                  - set_tile: 1
+                OnFalse:
+                  - set_tile: 0
+            - exec:
+                Action: chaser_random_movement
+                Delay: 3
+                Randomize: true
+        Dst:
+          Object:
+            - floor
+            - minqi_spawn_point
+            - mika_spawn_point
+            - tim_spawn_point
+            - staging_floor
+            - guard_rail
+            - cherry
+      - Src:
+          Preconditions:
+            and:
+              - eq:
+                  - src.is_chasing
+                  - 0
+              - eq:
+                  - src.initial_chase_started
+                  - 1
+          Object:
+            - minqi
+            - mika
+            - tim
+          Commands:
+            - if:
+                Conditions:
+                  gt:
+                    - consumed_big_cherry
+                    - 0
+                OnTrue:
+                  - set_tile: 1
+                OnFalse:
+                  - set_tile: 0
+            - exec:
+                Action: chaser_random_movement
+                Delay: 3
+                Randomize: true
+        Dst:
+          Object:
+            - wall
+            - minqi
+            - mika
+            - tim
+  - Name: start_chase
+    InputMapping:
+      Internal: true
+      Inputs:
+        '1':
+          VectorToDest:
+            - 0
+            - 0
+    Behaviours:
+      - Src:
+          Object:
+            - mika
+            - minqi
+            - tim
+          Commands:
+            - set:
+                - initial_chase_started
+                - 1
+            - exec:
+                Action: chaser_random_movement
+                Delay: 3
+                Randomize: true
+        Dst:
+          Object:
+            - mika
+            - minqi
+            - tim
+      - Src:
+          Object: mika
+          Commands:
+            - set:
+                - mika_count
+                - 1
+        Dst:
+          Object: mika
+      - Src:
+          Object: minqi
+          Commands:
+            - set:
+                - minqi_count
+                - 1
+        Dst:
+          Object: minqi
+      - Src:
+          Object: tim
+          Commands:
+            - set:
+                - tim_count
+                - 1
+        Dst:
+          Object: tim
+  - Name: reset_cherry_timer
+    InputMapping:
+      Internal: true
+      Inputs:
+        '1':
+          VectorToDest:
+            - 0
+            - 0
+    Behaviours:
+      - Src:
+          Object: gridman
+          Commands:
+            - decr:
+                - consumed_big_cherry
+                - 1
+        Dst:
+          Object: gridman
+  - Name: check_spawn_tim
+    InputMapping:
+      Internal: true
+      Inputs:
+        '1':
+          VectorToDest:
+            - 0
+            - 0
+    Behaviours:
+      - Src:
+          Object: tim_spawn_point
+          Commands:
+            - if:
+                Conditions:
+                  eq:
+                    - tim_count
+                    - 0
+                OnTrue:
+                  - spawn: tim
+            - exec:
+                Action: check_spawn_tim
+                Delay: 1
+                ActionId: 1
+        Dst:
+          Object:
+            - tim_spawn_point
+      - Src:
+          Object: tim_spawn_point
+          Commands:
+            - exec:
+                Action: check_spawn_tim
+                Delay: 1
+                ActionId: 1
+        Dst:
+          Object:
+            - tim
+            - minqi
+            - mika
+  - Name: check_spawn_mika
+    InputMapping:
+      Internal: true
+      Inputs:
+        '1':
+          VectorToDest:
+            - 0
+            - 0
+    Behaviours:
+      - Src:
+          Object: mika_spawn_point
+          Commands:
+            - if:
+                Conditions:
+                  eq:
+                    - mika_count
+                    - 0
+                OnTrue:
+                  - spawn: mika
+            - exec:
+                Action: check_spawn_mika
+                Delay: 1
+                ActionId: 1
+        Dst:
+          Object:
+            - mika_spawn_point
+      - Src:
+          Object: mika_spawn_point
+          Commands:
+            - exec:
+                Action: check_spawn_mika
+                Delay: 1
+                ActionId: 1
+        Dst:
+          Object:
+            - tim
+            - minqi
+            - mika
+  - Name: check_spawn_minqi
+    InputMapping:
+      Internal: true
+      Inputs:
+        '1':
+          VectorToDest:
+            - 0
+            - 0
+    Behaviours:
+      - Src:
+          Object: minqi_spawn_point
+          Commands:
+            - if:
+                Conditions:
+                  eq:
+                    - minqi_count
+                    - 0
+                OnTrue:
+                  - spawn: minqi
+            - exec:
+                Action: check_spawn_minqi
+                Delay: 1
+                ActionId: 1
+        Dst:
+          Object:
+            - minqi_spawn_point
+      - Src:
+          Object: minqi_spawn_point
+          Commands:
+            - exec:
+                Action: check_spawn_minqi
+                Delay: 1
+                ActionId: 1
+        Dst:
+          Object:
+            - tim
+            - minqi
+            - mika
+Objects:
+  - Name: gridman
+    Z: 2
+    MapCharacter: g
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: circle
+          Color:
+            - 1
+            - 1
+            - 0
+      GlobalBlockObserver:
+        - Shape: circle
+          Color:
+            - 1
+            - 1
+            - 0
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_monsters/tg_monsters_bug_d2.png
+  - Name: cherry
+    Z: 2
+    MapCharacter: c
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: circle
+          Scale: 0.3
+          Color:
+            - 1
+            - 0
+            - 0
+      GlobalBlockObserver:
+        - Shape: circle
+          Scale: 0.3
+          Color:
+            - 1
+            - 0
+            - 0
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_items/tg_items_orb_blue.png
+          Scale: 0.5
+  - Name: big_cherry
+    Z: 2
+    MapCharacter: C
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: circle
+          Scale: 0.6
+          Color:
+            - 1
+            - 0
+            - 0
+      GlobalBlockObserver:
+        - Shape: circle
+          Scale: 0.6
+          Color:
+            - 1
+            - 0
+            - 0
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_items/tg_items_heart_full.png
+  - Name: wall
+    Z: 1
+    MapCharacter: w
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0
+            - 0.3
+            - 0.8
+      GlobalBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0.8
+            - 0.3
+            - 0.8
+      GlobalSpriteObserver:
+        - TilingMode: WALL_2
+          Image:
+            - >-
+              oryx/oryx_tiny_galaxy/tg_sliced/tg_world/tg_world_wall_alien_h_a.png
+            - >-
+              oryx/oryx_tiny_galaxy/tg_sliced/tg_world/tg_world_wall_alien_v_a.png
+  - Name: floor
+    Z: 1
+    MapCharacter: f
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0.2
+            - 0.2
+            - 0.2
+      GlobalBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0.2
+            - 0.2
+            - 0.2
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_world/tg_world_floor_alien_a.png
+  - Name: staging_floor
+    Z: 1
+    MapCharacter: F
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0.5
+            - 0.5
+            - 0.2
+      GlobalBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0.5
+            - 0.5
+            - 0.2
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_world/tg_world_floor_hazard.png
+  - Name: guard_rail
+    Z: 2
+    MapCharacter: G
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: square
+          Scale: 0.4
+          Color:
+            - 0.8
+            - 0.3
+            - 0.8
+      GlobalBlockObserver:
+        - Shape: square
+          Scale: 0.4
+          Color:
+            - 0.8
+            - 0.3
+            - 0.8
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_world/tg_world_cage_open_b.png
+  - Name: minqi_spawn_point
+    Z: 1
+    InitialActions:
+      - Action: check_spawn_minqi
+        Delay: 1
+        ActionId: 1
+    MapCharacter: K
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0.5
+            - 0.5
+            - 0.2
+      GlobalBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0.5
+            - 0.5
+            - 0.2
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_world/tg_world_floor_hazard.png
+  - Name: minqi
+    Z: 3
+    Variables:
+      - Name: chase_speed
+        InitialValue: 1
+      - Name: is_chasing
+        InitialValue: 0
+      - Name: chase_cooldown
+        InitialValue: 0
+      - Name: initial_chase_started
+        InitialValue: 0
+    InitialActions:
+      - Action: start_chase
+        Delay: 15
+        ActionId: 1
+    MapCharacter: m
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: triangle
+          Color:
+            - 0.8
+            - 0.1
+            - 0
+        - Shape: triangle
+          Color:
+            - 1
+            - 0.1
+            - 0
+      GlobalBlockObserver:
+        - Shape: triangle
+          Color:
+            - 0.8
+            - 0.1
+            - 0
+        - Shape: triangle
+          Color:
+            - 1
+            - 0.1
+            - 0
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_monsters/tg_monsters_drone_d2.png
+        - Image: >-
+            oryx/oryx_tiny_galaxy/tg_sliced/tg_monsters/tg_monsters_crawler_d2.png
+  - Name: mika_spawn_point
+    Z: 1
+    InitialActions:
+      - Action: check_spawn_mika
+        Delay: 1
+        ActionId: 1
+    MapCharacter: M
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0.5
+            - 0.5
+            - 0.2
+      GlobalBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0.5
+            - 0.5
+            - 0.2
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_world/tg_world_floor_hazard.png
+  - Name: mika
+    Z: 3
+    Variables:
+      - Name: chase_speed
+        InitialValue: 1
+      - Name: is_chasing
+        InitialValue: 0
+      - Name: chase_cooldown
+        InitialValue: 0
+      - Name: initial_chase_started
+        InitialValue: 0
+    InitialActions:
+      - Action: start_chase
+        Delay: 15
+        ActionId: 1
+    MapCharacter: k
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: triangle
+          Color:
+            - 0
+            - 0.8
+            - 0.5
+        - Shape: triangle
+          Color:
+            - 1
+            - 0.8
+            - 0
+      GlobalBlockObserver:
+        - Shape: triangle
+          Color:
+            - 0
+            - 0.8
+            - 0.5
+        - Shape: triangle
+          Color:
+            - 1
+            - 0.8
+            - 0
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_monsters/tg_monsters_drone_d2.png
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_monsters/tg_monsters_pig_d2.png
+  - Name: tim_spawn_point
+    Z: 1
+    InitialActions:
+      - Action: check_spawn_tim
+        Delay: 1
+        ActionId: 1
+    MapCharacter: T
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0.5
+            - 0.5
+            - 0.2
+      GlobalBlockObserver:
+        - Shape: square
+          Scale: 1.4
+          Color:
+            - 0.5
+            - 0.5
+            - 0.2
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_world/tg_world_floor_hazard.png
+  - Name: tim
+    Z: 3
+    Variables:
+      - Name: chase_speed
+        InitialValue: 1
+      - Name: is_chasing
+        InitialValue: 0
+      - Name: chase_cooldown
+        InitialValue: 0
+      - Name: initial_chase_started
+        InitialValue: 0
+    InitialActions:
+      - Action: start_chase
+        Delay: 15
+        ActionId: 1
+    MapCharacter: t
+    Observers:
+      HumanPlayerBlockObserver:
+        - Shape: triangle
+          Color:
+            - 0
+            - 0.5
+            - 1
+        - Shape: triangle
+          Color:
+            - 1
+            - 0.5
+            - 0
+      GlobalBlockObserver:
+        - Shape: triangle
+          Color:
+            - 0
+            - 0.5
+            - 1
+        - Shape: triangle
+          Color:
+            - 1
+            - 0.5
+            - 0
+      GlobalSpriteObserver:
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_monsters/tg_monsters_drone_d2.png
+        - Image: oryx/oryx_tiny_galaxy/tg_sliced/tg_monsters/tg_monsters_jelly_d2.png
