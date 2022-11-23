@@ -72,6 +72,12 @@ You will have the same partial view of the environment that the agent has i.e a 
 When player a video of the global state of the game is recorded with the name
 `human_player_video_test.mp4`
 
+## Weights and Biases
+
+You can find training information here:
+
+https://wandb.ai/griddlyai/RLLib%20Gridman
+
 ## Citing
 
 If you use this environment, please cite the original Griddly Paper: 
