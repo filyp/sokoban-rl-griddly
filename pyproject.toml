@@ -5,13 +5,14 @@ description = ""
 authors = ["Bam4d <chrisbam4d@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-ray = {extras = ["rllib"], version = "^2.1.0"}
-griddly = "^1.5.1"
+python = "~3.8"
+ray = {extras = ["rllib"], version = "2.1.0"}
+griddly = "1.6.6"
 torch = "1.12.1"
 protobuf = "3.20.*"
 wandb = "^0.13.5"
 pygame = "^2.1.2"
+gym = "0.23.1"
 
 [tool.poetry.dev-dependencies]
 
